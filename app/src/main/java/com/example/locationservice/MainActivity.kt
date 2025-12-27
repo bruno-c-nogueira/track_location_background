@@ -30,7 +30,8 @@ class MainActivity : ComponentActivity() {
             this,
             arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.POST_NOTIFICATIONS
             ),
             PackageManager.PERMISSION_GRANTED
         )
