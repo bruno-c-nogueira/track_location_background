@@ -5,6 +5,7 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.locationservice.R
 import com.google.android.gms.location.LocationServices
@@ -49,10 +50,11 @@ class LocationService : Service() {
 
 
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        locationClient.getLocationUpdates(10000L)
+        startForeground(1, notification.build()) // The ID must be a non-zero integer
+        locationClient.getLocationUpdates(1000L)
             .catch { it.printStackTrace() }
             .onEach { location ->
+                Log.d("LOCATINUPDATE", "start: "+ location.latitude + " " + location.longitude)
                 val updatedNotification =
                     notification.setContentText("Location -> (${location.latitude}, ${location.longitude})")
                 notificationManager?.notify(1, updatedNotification.build())
